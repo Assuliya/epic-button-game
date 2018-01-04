@@ -1,1 +1,12 @@
 h1{color: green}
+
+#blue{
+  background-color: blue;
+  width: 200px;
+  height: 100px;
+  font-size: 20;
+  color: white
+}
+#red{background-color: red; color: white}
+
+span{color: red}
