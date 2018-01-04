@@ -17,14 +17,22 @@ var server = app.listen(8000, function() {
  console.log("listening on port 8000");
 })
 
+var number = 0;
+
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
   console.log("Client/socket is connected!");
   console.log("Client/socket id is: ", socket.id);
-  // all the server socket code goes in here
 
-  socket.on( "button_clicked", function (data){
-    console.log( 'Someone clicked a button!  Reason: '  + data.reason);
-    socket.emit( 'server_response', {response:  "sockets are the best!"});
+  socket.on( "blue_button", function (data){
+    // console.log( 'Blue clicked');
+    number += 1;
+    io.emit( 'server_response', {number: number});
+  })
+
+  socket.on( "red_button", function (data){
+    // console.log( 'Red clicked');
+    number = 0;
+    io.emit( 'server_response', {number: number});
   })
 })
